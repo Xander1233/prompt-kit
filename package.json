@@ -1,0 +1,33 @@
+{
+  "name": "@xandrrrr/prompt-kit",
+  "version": "1.1.0",
+  "description": "Build complex terminal interfaces and menues",
+  "main": "out/index.js",
+  "types": "out/index.d.ts",
+  "scripts": {
+    "build": "tsc",
+    "clean": "rm -rf ./out",
+    "typedoc:build": "npx typedoc"
+  },
+  "keywords": [
+    "prompt",
+    "promptkit",
+    "interface",
+    "console",
+    "menu"
+  ],
+  "author": "David Neidhart <david.neidhart@xndr.tech> (https://xndr.tech/)",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Xander1233/prompt-kit.git"
+  },
+  "homepage": "https://github.com/Xander1233/prompt-kit",
+  "bugs": {
+    "url": "https://github.com/Xander1233/prompt-kit/issues"
+  },
+  "devDependencies": {
+    "@types/node": "^18.15.11",
+    "typedoc": "^0.24.2"
+  }
+}

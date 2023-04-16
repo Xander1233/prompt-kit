@@ -1,0 +1,7 @@
+.github/
+src/
+tests/
+.gitignore
+typedoc.json
+docs/
+.gitattributes
