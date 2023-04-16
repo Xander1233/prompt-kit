@@ -4,5 +4,5 @@
     "entryPointStrategy": "resolve",
     "out": "./docs",
     "json": "./docs/doc.json",
-    "cname": "docs.promptkit.xndr.tech"
+    "cname": "prompt-kit.xndr.tech"
 }
