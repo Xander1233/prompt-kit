@@ -7,7 +7,8 @@
   "scripts": {
     "build": "tsc",
     "clean": "rm -rf ./out",
-    "typedoc:build": "npx typedoc"
+    "typedoc:build": "npx typedoc",
+    "test": "jest --roots tests/unit"
   },
   "keywords": [
     "prompt",
@@ -27,7 +28,11 @@
     "url": "https://github.com/Xander1233/prompt-kit/issues"
   },
   "devDependencies": {
+    "@types/jest": "^29.5.0",
     "@types/node": "^18.15.11",
-    "typedoc": "^0.24.2"
+    "jest": "^29.5.0",
+    "ts-jest": "^29.1.0",
+    "typedoc": "^0.24.2",
+    "typescript": "^5.0.4"
   }
 }
