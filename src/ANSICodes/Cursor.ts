@@ -1,3 +1,6 @@
+/**
+ * ANSI escape sequences for cursor movement and screen manipulation.
+ */
 export enum Cursor {
 	Up = '\x1B[1A',
 	Down = '\x1B[1B',

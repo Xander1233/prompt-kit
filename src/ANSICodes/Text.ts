@@ -1,3 +1,6 @@
+/**
+ * ANSI escape sequences for text formatting.
+ */
 export enum Text {
 	Reset = "\x1b[0m",
 	Bold = "\x1b[1m",
