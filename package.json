@@ -1,6 +1,6 @@
 {
   "name": "@xandrrrr/prompt-kit",
-  "version": "1.1.1",
+  "version": "1.2.0",
   "description": "Build complex terminal interfaces and menues",
   "main": "out/index.js",
   "types": "out/index.d.ts",
