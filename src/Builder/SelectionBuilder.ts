@@ -114,6 +114,7 @@ export class SelectionBuilder extends Base {
 			returnString += "\n";
 		});
 
+		returnString += '↑↓: Select option, ␣: Select, ↵: Finish';
 
 		return returnString;
 	}
