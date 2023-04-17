@@ -18,8 +18,8 @@ jobs:
       - name: Clean installation of project
         run: npm ci
       - name: Run unit tests
-        run: npm run tests
-  
+        run: npm run tests:all
+
   build:
     name: Build
     needs: tests
