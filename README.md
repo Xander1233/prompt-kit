@@ -18,13 +18,13 @@ const { SelectionBuilder } = require('prompt-kit');
 const selection = new SelectionBuilder()
   .setPrompt('Select a color')
   .setOptions([
-	{ option: 'red', value: 'red' },
-	{ option: 'green', value: 'green' },
-	{ option: 'blue', value: 'blue' },
+    { option: 'red', value: 'red' },
+    { option: 'green', value: 'green' },
+    { option: 'blue', value: 'blue' },
   ])
   .build()
   .then((selected) => {
-	console.log(`You selected ${selected.map((s) => s.value).join(', ')}`);
+    console.log(`You selected ${selected.map((s) => s.value).join(', ')}`);
   });
 ```
 
