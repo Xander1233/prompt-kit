@@ -8,7 +8,27 @@ export class Terminal {
 	 */
 	public static shared: Terminal = new Terminal();
 
-	public print(message: string | MessageBuilder): void {
+	public printSuccess(message: string): void {
+		this.print(new MessageBuilder().foregroundGreen().text(message).toString());
+	}
+
+	public printError(message: string): void {
+		this.print(new MessageBuilder().foregroundRed().text(message).toString());
+	}
+
+	public printWarning(message: string): void {
+		this.print(new MessageBuilder().foregroundYellow().text(message).toString());
+	}
+
+	public printInfo(message: string): void {
+		this.print(new MessageBuilder().foregroundBlue().text(message).toString());
+	}
+
+	public printDebug(message: string): void {
+		this.print(new MessageBuilder().foregroundMagenta().text(message).toString());
+	}
+
+	public print(message: string): void {
 		console.log(message);
 	}
 
