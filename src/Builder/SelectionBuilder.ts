@@ -48,13 +48,13 @@ export class SelectionBuilder extends Base {
 			let currentSelection = 0;
 			let isFirstPrint = true;
 
-			let selectedOptions = new Set<number>();
+			const selectedOptions = new Set<number>();
 
 			this.defaultOption.forEach((index) => {
 				selectedOptions.add(index);
 			});
 
-			const printFunctions = () => {
+			const printFunctions = (): void => {
 
 				if (!isFirstPrint) {
 					// Clear the previous lines, including the prompt and the instructions (options.length + 2)

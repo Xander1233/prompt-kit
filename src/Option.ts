@@ -7,7 +7,7 @@ export class Option {
 		this.value = value;
 	}
 
-	public toString() {
+	public toString(): string {
 		return `Option { option: ${this.option}, value: ${this.value} }`;
 	}
 }

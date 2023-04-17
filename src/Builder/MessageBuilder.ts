@@ -5,7 +5,7 @@ import { Background, Foreground, getColor, Text } from "../ANSICodes";
  */
 export class MessageBuilder {
 
-	private _message: string = "";
+	private _message = "";
 
 	/**
 	 * Add a black foreground color to the message
@@ -282,7 +282,7 @@ export class MessageBuilder {
 	 * Get the message as a string with all ANSI escape sequences. Can be used to add to other Builder instances or to print to the console.
 	 * @returns The message as a string
 	 */
-	public toString() {
+	public toString(): string {
 		return this._message;
 	}
 }

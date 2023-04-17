@@ -15,39 +15,39 @@ export { Foreground, Background, Cursor, Text }
 export { getColor } from "./ANSICodes";
 
 export default class PromptKit {
-	public static get SelectionBuilder() {
+	public static get SelectionBuilder(): typeof SelectionBuilder {
 		return SelectionBuilder;
 	}
 
-	public static get PickerBuilder() {
+	public static get PickerBuilder(): typeof PickerBuilder {
 		return PickerBuilder;
 	}
 
-	public static get MessageBuilder() {
+	public static get MessageBuilder(): typeof MessageBuilder {
 		return MessageBuilder;
 	}
 
-	public static get Terminal() {
+	public static get Terminal(): typeof Terminal {
 		return Terminal;
 	}
 
-	public static get Foreground() {
+	public static get Foreground(): typeof Foreground {
 		return Foreground;
 	}
 
-	public static get Background() {
+	public static get Background(): typeof Background {
 		return Background;
 	}
 
-	public static get Cursor() {
+	public static get Cursor(): typeof Cursor {
 		return Cursor;
 	}
 
-	public static get Text() {
+	public static get Text(): typeof Text {
 		return Text;
 	}
 
-	public static getColor(color: Foreground | Background | { red: number, green: number, blue: number, background?: boolean }) {
+	public static getColor(color: Foreground | Background | { red: number, green: number, blue: number, background?: boolean }): string {
 		return getColorFunction(color);
 	}
 }

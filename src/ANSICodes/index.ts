@@ -9,23 +9,23 @@ export { Text } from "./Text";
 export { getColor } from "./Color";
 
 export default class ANSICodes {
-	public static get Foreground() {
+	public static get Foreground(): typeof Foreground {
 		return Foreground;
 	}
 
-	public static get Background() {
+	public static get Background(): typeof Background {
 		return Background;
 	}
 
-	public static get Cursor() {
+	public static get Cursor(): typeof Cursor {
 		return Cursor;
 	}
 
-	public static get Text() {
+	public static get Text(): typeof Text {
 		return Text;
 	}
 
-	public static getColor(color: Foreground | Background) {
+	public static getColor(color: Foreground | Background): string {
 		return getColor(color);
 	}
 }

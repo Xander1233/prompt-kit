@@ -22,7 +22,7 @@ export class Base {
 		});
 	}
 
-	public close() {
+	public close(): void {
 		this.rl.close();
 	}
 }

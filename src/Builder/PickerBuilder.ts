@@ -5,7 +5,7 @@ import { Option } from "../Option";
 export class PickerBuilder extends Base {
 	public prompt = "";
 	public options: Option[] = [];
-	public defaultOptionIndex: number = -1;
+	public defaultOptionIndex = -1;
 
 	public setPrompt(prompt: string): PickerBuilder {
 		this.prompt = prompt;
@@ -30,7 +30,7 @@ export class PickerBuilder extends Base {
 			let currentSelection = this.defaultOptionIndex == -1 ? 0 : this.defaultOptionIndex;
 			let isFirstPrint = true;
 
-			const printFunctions = () => {
+			const printFunctions = (): void => {
 
 				if (!isFirstPrint) {
 					// Clear the options.length lines with ansi escape codes
