@@ -17,8 +17,13 @@ export class SelectionBuilder extends Base {
 		return this;
 	}
 
-	public setOptions(options: Option[]): SelectionBuilder {
-		this.options = options;
+	public addOptions(options: (Option | { option: string, value: any })[]): SelectionBuilder {
+		this.options.push(...options);
+		return this;
+	}
+
+	public addOption(option: Option | { option: string, value: any }): SelectionBuilder {
+		this.options.push(option);
 		return this;
 	}
 
