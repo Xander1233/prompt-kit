@@ -21,4 +21,8 @@ export class Base {
 			});
 		});
 	}
+
+	public close() {
+		this.rl.close();
+	}
 }
