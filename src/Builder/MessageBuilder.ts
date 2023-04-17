@@ -261,6 +261,15 @@ export class MessageBuilder {
 	}
 
 	/**
+	 * Clears and resets the builder
+	 * @returns The MessageBuilder instance
+	 */
+	public clear(): MessageBuilder {
+		this._message = '';
+		return this;
+	}
+
+	/**
 	 * Print the message to the console
 	 * @returns The MessageBuilder instance
 	 */
