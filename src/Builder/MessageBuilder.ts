@@ -283,6 +283,6 @@ export class MessageBuilder {
 	 * @returns The message as a string
 	 */
 	public toString() {
-		return this._message + Text.Reset;
+		return this._message;
 	}
 }
