@@ -8,7 +8,7 @@
     "build": "tsc",
     "clean": "rm -rf ./out",
     "typedoc:build": "npx typedoc",
-    "test": "jest --roots tests/unit"
+    "tests:all": "jest --roots tests/unit"
   },
   "keywords": [
     "prompt",

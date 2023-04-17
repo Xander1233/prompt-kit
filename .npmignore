@@ -5,3 +5,4 @@ tests/
 typedoc.json
 docs/
 .gitattributes
+jest.config.js

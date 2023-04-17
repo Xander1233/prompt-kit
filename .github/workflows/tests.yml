@@ -1,0 +1,68 @@
+name: Node.js CI
+
+on:
+  release:
+    types: [created]
+
+jobs:
+  tests:
+    name: Test
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+      - name: Setup node enviroment
+        uses: actions/setup-node@v3
+        with:
+          node-version: 16
+      - name: Clean installation of project
+        run: npm ci
+      - name: Run unit tests
+        run: npm run tests
+  
+  build:
+    name: Build
+    needs: tests
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+      - name: Setup node enviroment
+        uses: actions/setup-node@v3
+        with:
+          node-version: 16
+      - name: Clean installation
+        run: npm ci
+      - name: Build
+        run: npm run build
+      - name: Upload build artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: BuildArtifact
+          if-no-files-found: error
+          path: |
+            ./out
+            ./package.json
+            ./tsconfig.json
+            ./README.md
+            ./LICENSE
+
+  publish-npm:
+    name: Publish
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+      - name: Setup node enviroment
+        uses: actions/setup-node@v3
+        with:
+          node-version: 16
+      - name: Download build artifact
+        uses: actions/download-artifact@v3
+        with:
+          name: BuildArtifact
+      - name: Publish to NPM
+        run: npm publish --access public
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
