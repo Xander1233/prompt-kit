@@ -3,6 +3,11 @@ import { MessageBuilder } from "./Builder/MessageBuilder";
 
 export class Terminal {
 
+	/**
+	 * The shared instance of the Terminal class
+	 */
+	public static shared: Terminal = new Terminal();
+
 	public print(message: string | MessageBuilder): void {
 		console.log(message);
 	}
@@ -77,5 +82,15 @@ export class Terminal {
 
 	public showCursor(): void {
 		console.log(Cursor.ShowCursor);
+	}
+
+	/**
+	 * Clears the specified number of lines from the cursor to the top of the terminal
+	 * @param lines The number of lines to clear
+	 */
+	public clearLinesToCursor(lines: number): void {
+		for (let i = 0; i < lines; i++) {
+			process.stdout.write('\x1B[1A\x1B[2K');
+		}
 	}
 }
