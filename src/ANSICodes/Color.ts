@@ -21,3 +21,13 @@ export enum Background {
 	White = 47,
 	Reset = 49
 }
+export function getColor(color: Foreground | Background | { red: number, green: number, blue: number, background?: boolean }): string {
+	
+	if (typeof color === 'number') {
+		return `\x1b[${color}m`;
+	}
+
+	const { red, green, blue, background = false } = color;
+
+	return `\x1b[${background ? '4' : 3}8;2;${red};${green};${blue}m`;
+}
