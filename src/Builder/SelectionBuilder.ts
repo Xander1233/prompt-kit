@@ -52,7 +52,7 @@ export class SelectionBuilder extends Base {
 
 				if (!isFirstPrint) {
 					// Clear the options.length lines with ansi escape codes
-					for (let i = 0; i < this.options.length + 1; i++) {
+					for (let i = 0; i < this.options.length + 2; i++) {
 						process.stdout.write('\x1B[1A\x1B[2K');
 					}
 				}
@@ -66,6 +66,8 @@ export class SelectionBuilder extends Base {
 						console.log(`${selectedOptions.has(index) ? "◉" : "◯"} ${option.option}`);
 					}
 				});
+
+				console.log('Use the arrow keys to navigate, space to select, and press enter to finish.');
 
 				isFirstPrint = false;
 			}
