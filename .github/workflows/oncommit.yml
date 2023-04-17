@@ -2,7 +2,11 @@
 name: Check on commit
 
 on:
-  [push, workflow_dispatch]
+  push:
+    branches:
+      - "master"
+      - "develop"
+  workflow_dispatch:
 
 jobs:
   tests:
