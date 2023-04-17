@@ -1,6 +1,7 @@
 import { Background, Foreground } from "../ANSICodes";
 import { Base } from "../Base";
 import { Option } from "../Option";
+import { Terminal } from "../Terminal";
 
 export class SelectionBuilder extends Base {
 	public prompt = "";
@@ -51,23 +52,11 @@ export class SelectionBuilder extends Base {
 			const printFunctions = () => {
 
 				if (!isFirstPrint) {
-					// Clear the options.length lines with ansi escape codes
-					for (let i = 0; i < this.options.length + 2; i++) {
-						process.stdout.write('\x1B[1A\x1B[2K');
-					}
+					// Clear the previous lines, including the prompt and the instructions (options.length + 2)
+					Terminal.shared.clearLinesToCursor(this.options.length + 2);
 				}
 
-				console.log(this.prompt);
-
-				this.options.forEach((option, index) => {
-					if (index === currentSelection) {
-						console.log(`\x1b[${Background.White}m\x1b[${Foreground.Black}m${selectedOptions.has(index) ? "◉" : "◯"} ${option.option}\x1b[0m`);
-					} else {
-						console.log(`${selectedOptions.has(index) ? "◉" : "◯"} ${option.option}`);
-					}
-				});
-
-				console.log('Use the arrow keys to navigate, space to select, and press enter to finish.');
+				console.log(this.getPromptString(currentSelection, selectedOptions));
 
 				isFirstPrint = false;
 			}
@@ -100,5 +89,27 @@ export class SelectionBuilder extends Base {
 
 			printFunctions();
 		});
+	}
+
+	/**
+	 * Returns the string to print to the console. Includes the prompt, options, and instructions.
+	 * @param currentSelection The index of the currently selected option (The option the cursor is on)
+	 * @param selectedOptions The indexes of the options that are currently selected and will be returned
+	 * @returns The string to print to the console
+	 */
+	public getPromptString(currentSelection: number, selectedOptions: Set<number>): string {
+		let returnString = `${this.prompt}\n`;
+
+		this.options.forEach((option, index) => {
+			if (index === currentSelection) {
+				returnString += `\x1b[${Background.White}m\x1b[${Foreground.Black}m${selectedOptions.has(index) ? "◉" : "◯"} ${option.option}\x1b[0m`;
+			} else {
+				returnString += `${selectedOptions.has(index) ? "◉" : "◯"} ${option.option}`;
+			}
+			returnString += "\n";
+		});
+
+
+		return returnString;
 	}
 }
