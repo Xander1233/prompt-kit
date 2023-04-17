@@ -30,4 +30,4 @@ const selection = new SelectionBuilder()
 
 ## Documentation
 
-You can find the documentation [here](https://docs.promptkit.xndr.tech/).
+You can find the documentation [here](https://prompt-kit.xndr.tech/).
