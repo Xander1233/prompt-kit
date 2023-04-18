@@ -6,6 +6,9 @@ import { Terminal } from "./Terminal";
 
 import { Foreground, Background, Cursor, Text, getColor as getColorFunction } from "./ANSICodes";
 
+if (!process.stdout.isTTY && process.env.PROMPTKIT_DISABLE_TTY_WARNING !== "true") {
+	Terminal.shared.print("[WARN] This terminal does not support TTY. Some features may not work as expected. To disable this warning, set the environment variable 'PROMPTKIT_DISABLE_TTY_WARNING' to 'true'.");
+}
 
 export { SelectionBuilder, MessageBuilder, PickerBuilder };
 
