@@ -2,7 +2,7 @@ import { Base } from "../Base";
 
 export class PromptBuilder extends Base {
 
-	private _message: string = "";
+	private _message = "";
 
 	private _input_validation: (input: string) => boolean = () => true;
 
