@@ -1,6 +1,7 @@
 # Prompt Kit
 
 Build interactive command line interfaces with ease.
+This package only works in a TTY-enabled environment. If the package is used in a non-TTY environment, it will print a warning that can be suppressed by setting the `PROMPTKIT_DISABLE_TTY_WARNING` environment variable to `true`.
 
 ## Installation
 
