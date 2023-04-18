@@ -9,14 +9,11 @@ export class Base {
 
 	constructor() {
 		readline.emitKeypressEvents(process.stdin);
-		if (process.stdin.isTTY) {
-			process.stdin.setRawMode(true);
-		}
 	}
 
-	public readLine(): Promise<string> {
+	protected readLine(message: string = ""): Promise<string> {
 		return new Promise((resolve) => {
-			this.rl.question('', (answer) => {
+			this.rl.question(message, (answer) => {
 				resolve(answer);
 			});
 		});
