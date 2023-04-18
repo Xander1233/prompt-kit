@@ -1,6 +1,7 @@
 import { SelectionBuilder } from "./Builder/SelectionBuilder";
 import { PickerBuilder } from "./Builder/PickerBuilder";
 import { MessageBuilder } from "./Builder/MessageBuilder";
+import { PromptBuilder } from "./Builder/PromptBuilder";
 
 import { Terminal } from "./Terminal";
 
@@ -8,9 +9,11 @@ import { Foreground, Background, Cursor, Text, getColor as getColorFunction } fr
 
 if (!process.stdout.isTTY && process.env.PROMPTKIT_DISABLE_TTY_WARNING !== "true") {
 	Terminal.shared.print("[WARN] This terminal does not support TTY. Some features may not work as expected. To disable this warning, set the environment variable 'PROMPTKIT_DISABLE_TTY_WARNING' to 'true'.");
+} else {
+	process.stdin.setRawMode(true);
 }
 
-export { SelectionBuilder, MessageBuilder, PickerBuilder };
+export { SelectionBuilder, MessageBuilder, PickerBuilder, PromptBuilder };
 
 export { Terminal };
 
@@ -28,6 +31,10 @@ export default class PromptKit {
 
 	public static get MessageBuilder(): typeof MessageBuilder {
 		return MessageBuilder;
+	}
+
+	public static get PromptBuilder(): typeof PromptBuilder {
+		return PromptBuilder;
 	}
 
 	public static get Terminal(): typeof Terminal {
