@@ -11,7 +11,7 @@ export class Base {
 		readline.emitKeypressEvents(process.stdin);
 	}
 
-	protected readLine(message: string = ""): Promise<string> {
+	protected readLine(message = ""): Promise<string> {
 		return new Promise((resolve) => {
 			this.rl.question(message, (answer) => {
 				resolve(answer);

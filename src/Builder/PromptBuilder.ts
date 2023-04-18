@@ -51,25 +51,9 @@ export class PromptBuilder extends Base {
 	}
 
 	public prompt(): Promise<string> {
-		return new Promise(async (resolve) => {
+		return new Promise((resolve): void => {
 
-			let eventListener = (data: Buffer) => {
-
-				const input = data.toString().trim();
-
-				if (input.length === 0) {
-					if (this._input_default) {
-						process.stdin.off("data", eventListener);
-						resolve(this._input_default);
-					} else {
-						createUI("You must provide a value.");
-					}
-				} else {
-					validateInput(input);
-				}
-			};
-
-			const createUI = (error?: string) => {
+			const createUI = (error?: string): void => {
 				if (error) {
 					console.log(error);
 				}
@@ -77,19 +61,17 @@ export class PromptBuilder extends Base {
 				this.readLine(`${this._input_default ? `[Default: ${this._input_default}]` : ""} > `).then(handleInput);
 			}
 
-			const validateInput = (input: string) => {
+			const validateInput = (input: string): void => {
 				if (this.validateUserInput(input)) {
-					process.stdin.off("data", eventListener);
 					resolve(this._input_transform(input));
 				} else {
 					createUI("Your input was invalid.");
 				}
 			}
 
-			const handleInput = (input: string) => {
+			const handleInput = (input: string): void => {
 				if (input.length === 0) {
 					if (this._input_default) {
-						process.stdin.off("data", eventListener);
 						resolve(this._input_default);
 					} else {
 						createUI("You must provide a value.");
