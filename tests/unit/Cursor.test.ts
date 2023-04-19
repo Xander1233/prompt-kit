@@ -1,3 +1,5 @@
+process.env.PROMPTKIT_DISABLE_TTY_WARNING = "true";
+
 import { Cursor } from "../../src";
 
 describe("Cursor", () => {

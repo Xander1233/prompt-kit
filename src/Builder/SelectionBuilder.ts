@@ -4,7 +4,7 @@ import { Option } from "../Option";
 import { Terminal } from "../Terminal";
 
 export class SelectionBuilder extends Base {
-	public prompt = "";
+	public prompt = "Select some options:";
 	public options: Option[] = [];
 	public defaultOption: Set<number> = new Set();
 	
