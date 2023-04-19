@@ -44,6 +44,15 @@ export class SelectionBuilder extends Base {
 	}
 
 	public build(): Promise<Option[]> {
+
+		if (this.options.length === 0) {
+			throw new Error('No options added');
+		}
+
+		if (this.prompt === "") {
+			this.prompt = 'Select some options:';
+		}
+
 		return new Promise((resolve) => {
 			let currentSelection = 0;
 			let isFirstPrint = true;
@@ -57,8 +66,9 @@ export class SelectionBuilder extends Base {
 			const printFunctions = (): void => {
 
 				if (!isFirstPrint) {
-					// Clear the previous lines, including the prompt and the instructions (options.length + 2)
-					Terminal.shared.clearLinesToCursor(this.options.length + 2);
+					// Clear the previous line
+					// prompt, 5 options, instructions
+					Terminal.shared.clearLinesToCursor(7);
 				}
 
 				console.log(this.getPromptString(currentSelection, selectedOptions));
@@ -105,16 +115,58 @@ export class SelectionBuilder extends Base {
 	public getPromptString(currentSelection: number, selectedOptions: Set<number>): string {
 		let returnString = `${this.prompt}\n`;
 
-		this.options.forEach((option, index) => {
-			if (index === currentSelection) {
-				returnString += `\x1b[${Background.White}m\x1b[${Foreground.Black}m${selectedOptions.has(index) ? "◉" : "◯"} ${option.option}\x1b[0m`;
-			} else {
-				returnString += `${selectedOptions.has(index) ? "◉" : "◯"} ${option.option}`;
-			}
-			returnString += "\n";
-		});
+		returnString += this.createScrollableOptionString(currentSelection, selectedOptions);
 
 		returnString += '↑↓: Select option, ␣: Select, ↵: Finish';
+
+		if (this.defaultOption.size > 0) {
+			returnString += ` (Press ↵ to use the default option${this.defaultOption.size > 1 ? 's' : ''})`;
+		}
+
+		return returnString;
+	}
+
+	public createScrollableOptionString(currentSelection: number, selected: Set<number>): string {
+
+		let returnString = '';
+
+		if (this.options.length < 6) {
+			for (let i = 0; i < this.options.length; i++) {
+				if (i === currentSelection) {
+					returnString += `\x1b[${Background.White}m\x1b[${Foreground.Black}m${selected.has(i) ? "◉" : "◯"} ${this.options[i].option}\x1b[0m`;
+				} else {
+					returnString += `${selected.has(i) ? "◉" : "◯"} ${this.options[i].option}`;
+				}
+				returnString += "\n";
+			}
+			return returnString;
+		}
+
+		const maxScroll = currentSelection + 5;
+		
+		// If the max scroll is greater than the number of options, we need to wrap around
+		const upperBound = maxScroll > this.options.length ? maxScroll - this.options.length : maxScroll;
+		const lowerBound = currentSelection;
+
+		for (let i = lowerBound;; i++) {
+
+			// If we've reached the upper bound, break
+			if (i === upperBound) {
+				break;
+			}
+
+			// If we've reached the end of the possible options, start from the beginning
+			if (lowerBound > upperBound && i === this.options.length) {
+				i = 0;
+			}
+
+			if (i === currentSelection) {
+				returnString += `\x1b[${Background.White}m\x1b[${Foreground.Black}m${selected.has(i) ? "◉" : "◯"} ${this.options[i].option}\x1b[0m`;
+			} else {
+				returnString += `${selected.has(i) ? "◉" : "◯"} ${this.options[i].option}`;
+			}
+			returnString += "\n";
+		}
 
 		return returnString;
 	}
