@@ -126,7 +126,7 @@ export class SelectionBuilder extends Base {
 		return returnString;
 	}
 
-	public createScrollableOptionString(currentSelection: number, selected: Set<number>) {
+	public createScrollableOptionString(currentSelection: number, selected: Set<number>): string {
 
 		let returnString = '';
 
@@ -142,10 +142,11 @@ export class SelectionBuilder extends Base {
 			return returnString;
 		}
 
-		let maxScroll = currentSelection + 5;
+		const maxScroll = currentSelection + 5;
+		
 		// If the max scroll is greater than the number of options, we need to wrap around
-		let upperBound = maxScroll > this.options.length ? maxScroll - this.options.length : maxScroll;
-		let lowerBound = currentSelection;
+		const upperBound = maxScroll > this.options.length ? maxScroll - this.options.length : maxScroll;
+		const lowerBound = currentSelection;
 
 		for (let i = lowerBound;; i++) {
 
