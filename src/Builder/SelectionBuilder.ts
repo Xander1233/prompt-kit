@@ -68,7 +68,8 @@ export class SelectionBuilder extends Base {
 				if (!isFirstPrint) {
 					// Clear the previous line
 					// prompt, 5 options, instructions
-					Terminal.shared.clearLinesToCursor(7);
+					const linesToClear = 2 + Math.min(this.options.length, 5);
+					Terminal.shared.clearLinesToCursor(linesToClear);
 				}
 
 				console.log(this.getPromptString(currentSelection, selectedOptions));
