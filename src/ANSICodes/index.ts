@@ -28,4 +28,16 @@ export default class ANSICodes {
 	public static getColor(color: Foreground | Background): string {
 		return getColor(color);
 	}
+
+	public static setPosition(x: number, y: number): string {
+		return `\x1B[${y};${x}H`;
+	}
+
+	public static setColumn(x: number): string {
+		return `\x1B[${x}G`;
+	}
+
+	public static setLine(y: number): string {
+		return `\x1B[${y}d`;
+	}
 }
