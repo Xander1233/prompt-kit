@@ -76,9 +76,9 @@ jobs:
           name: BuildArtifact
           if-no-files-found: error
           path: |
-            ./out
+            ./lib
             ./package.json
-            ./tsconfig.json
+            ./config
             ./README.md
             ./LICENSE
 
