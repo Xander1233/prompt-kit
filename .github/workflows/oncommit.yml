@@ -62,3 +62,24 @@ jobs:
         run: npm ci
       - name: Build
         run: npm run build
+  
+  dry-publish:
+    name: Dry Publish
+    needs: [ dry-build, lint, tests ]
+    runs-on: self-hosted
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+      - name: Setup node enviroment
+        uses: actions/setup-node@v3
+        with:
+          node-version: 16
+          registry-url: 'https://registry.npmjs.org'
+      - name: Clean install
+        run: npm ci
+      - name: Build
+        run: npm run build
+      - name: Publish to NPM
+        run: npm publish --access public --dry-run
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
