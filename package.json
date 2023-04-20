@@ -2,11 +2,28 @@
   "name": "@xandrrrr/prompt-kit",
   "version": "1.8.0",
   "description": "Build complex terminal interfaces and menues",
-  "main": "out/index.js",
-  "types": "out/index.d.ts",
+  "files": [ "lib/**/*" ],
+  "main": "lib/cjs/index.js",
+  "types": "lib/cjs/types/index.d.ts",
+  "exports": {
+    ".": {
+      "import": {
+        "types": "lib/esm/types/index.d.ts",
+        "default": "lib/esm/index.mjs"
+      },
+      "require": {
+        "types": "lib/cjs/types/index.d.ts",
+        "default": "lib/cjs/index.js"
+      }
+    }
+  },
   "scripts": {
-    "build": "tsc",
-    "clean": "rm -rf ./out",
+    "clean": "rm -rf ./lib",
+    "build": "npm run clean && npm run build:esm && npm run build:cjs",
+    "build:esm": "tsc -p ./config/tsconfig.esm.json && mv lib/esm/index.js lib/esm/index.mjs",
+    "build:cjs": "tsc -p ./config/tsconfig.cjs.json",
+    "prepack": "npm run build",
+    
     "typedoc:build": "npx typedoc",
     "tests:all": "jest --roots tests/unit",
     "lint": "eslint --ext \".ts\" ./src"
