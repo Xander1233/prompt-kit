@@ -6,19 +6,27 @@ on:
     branches:
       - "master"
       - "develop"
+      - "feature_*"
+      - "fix_*"
   workflow_dispatch:
 
 jobs:
   tests:
     name: Test
     runs-on: self-hosted
+
+    strategy:
+      fail-fast: false
+      matrix:
+        node-version: [12.x, 14.x, 16.x, 18.x]
+
     steps:
       - name: Checkout
         uses: actions/checkout@v3
-      - name: Setup node enviroment
+      - name: Use Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v3
         with:
-          node-version: 16
+          node-version: ${{ matrix.node-version }}
       - name: Clean installation of project
         run: npm ci
       - name: Run unit tests
