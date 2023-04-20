@@ -13,5 +13,6 @@
 		"allowJs": true,
 		"allowSyntheticDefaultImports": true
 	},
-	"exclude": [ "../tests", "../lib" ]
+	"exclude": [ "../tests", "../lib" ],
+	"include": [ "../src" ]
 }
