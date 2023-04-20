@@ -42,3 +42,23 @@ jobs:
         run: npm ci
       - name: Lint
         run: npm run lint
+
+  dry-build:
+    name: Dry build
+    runs-on: self-hosted
+    needs: [ lint, tests ]
+    strategy:
+      fail-fast: false
+      matrix:
+        node-version: [14.x, 16.x, 18.x]
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v3
+        with:
+          node-version: ${{ matrix.node-version }}
+      - name: Clean installation of project
+        run: npm ci
+      - name: Build
+        run: npm run build
