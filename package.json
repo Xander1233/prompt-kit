@@ -10,12 +10,12 @@
   "exports": {
     ".": {
       "import": {
-        "types": "lib/esm/types/index.d.ts",
-        "default": "lib/esm/index.mjs"
+        "types": "./lib/esm/types/index.d.ts",
+        "default": "./lib/esm/index.mjs"
       },
       "require": {
-        "types": "lib/cjs/types/index.d.ts",
-        "default": "lib/cjs/index.js"
+        "types": "./lib/cjs/types/index.d.ts",
+        "default": "./lib/cjs/index.js"
       }
     }
   },
@@ -24,7 +24,6 @@
     "build": "npm run clean && npm run build:esm && npm run build:cjs",
     "build:esm": "tsc -p ./config/tsconfig.esm.json && mv lib/esm/index.js lib/esm/index.mjs",
     "build:cjs": "tsc -p ./config/tsconfig.cjs.json",
-    "prepack": "npm run build",
     "typedoc:build": "npx typedoc",
     "tests:all": "jest --roots tests/unit",
     "lint": "eslint --ext \".ts\" ./src"
