@@ -8,13 +8,13 @@ This package only works in a TTY-enabled environment. If the package is used in 
 To install the latest version, run:
 
 ```bash
-npm install prompt-kit
+npm install @xandrrrr/prompt-kit
 ```
 
 ## Usage
 
 ```js
-const { SelectionBuilder } = require('prompt-kit');
+const { SelectionBuilder } = require('@xandrrrr/prompt-kit');
 
 const selection = new SelectionBuilder()
   .setPrompt('Select a color')
